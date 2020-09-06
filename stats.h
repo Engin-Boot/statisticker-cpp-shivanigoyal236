@@ -4,18 +4,7 @@ namespace Statistics {
     class Stats {
     public:
     float max,min,avg;
-    std::vector<float> RemoveNanValues(const std::vector<float>& sample)
-    {
-        std::vector<float>NewSample;
-        for(int i=0;i<sample.size();i++)
-        {
-            if(std::isnan(sample[i])!=1)
-            NewSample.push_back(sample[i]);
-            else
-            NewSample.push_back(0);
-        }
-        return NewSample;
-    }
+    
     void ComputeAverage(const std::vector<float>& sample)
     {
         if(sample.empty())
@@ -24,14 +13,15 @@ namespace Statistics {
             }
             else
             {
-            std::vector<float> NewSample;
-            NewSample = RemoveNanValues(sample);
+             int count=0;
             float sum = 0.0;
-            for (int i = 0; i < NewSample.size(); i++)
+            for (int i = 0; i < sample.size(); i++)
             {
-                sum += NewSample[i];
+                if(std::isnan(sample[i])!=1)
+               { sum += sample[i];
+               count++;}
             }
-            avg = sum / NewSample.size();}
+            avg = sum / count;}
     }
      void ComputeMin(const std::vector<float>& sample)
      {
