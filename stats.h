@@ -11,8 +11,6 @@ namespace Statistics {
         {
             if(std::isnan(sample[i])!=1)
             NewSample.push_back(sample[i]);
-            else
-            NewSample.push_back(0);
         }
         return NewSample;
     }
